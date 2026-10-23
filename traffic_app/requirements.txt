@@ -1,0 +1,10 @@
+streamlit>=1.35
+pandas>=2.0
+numpy>=1.26
+scikit-learn>=1.3
+joblib>=1.3
+plotly>=5.18
+folium>=0.15
+# Needed for the GRU / LSTM models (.keras files saved from Keras 3).
+# TensorFlow 2.16-2.19 supports Python 3.9-3.12. Without it the app falls back to the gradient-boosting baseline.
+tensorflow>=2.16
