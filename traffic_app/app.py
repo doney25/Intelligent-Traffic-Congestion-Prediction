@@ -1,9 +1,6 @@
-"""Traffic Intelligence System - Streamlit app.
-
-Run:  streamlit run app.py
-"""
 from __future__ import annotations
 import datetime as dt
+from pathlib import Path
 from types import SimpleNamespace
 
 import numpy as np
@@ -23,7 +20,9 @@ from core.viz import ACCENT, INK, folium_map, forecast_figure, style, timelapse_
 st.set_page_config(page_title="Traffic Intelligence System", page_icon="🚦", layout="wide")
 st.markdown("""
 <style>
-.block-container {padding-top: 1.6rem; max-width: 1280px;}
+.block-container {padding-top: 1.0rem; max-width: 1440px;}
+[data-testid="stAppViewContainer"] {background: linear-gradient(135deg, #f3f8f6 0%, #e8f3f2 48%, #eef2f8 100%); background-attachment: fixed;}
+[data-testid="stImage"] img {border-radius: 12px; width: 100%;}
 [data-testid="stMetric"] {border: 1px solid #dfe5e8; border-radius: 8px; padding: .55rem .9rem;}
 h1 {font-size: 1.75rem !important; margin-bottom: 0 !important;}
 </style>""", unsafe_allow_html=True)
@@ -154,6 +153,11 @@ def day_profile(day_type: str) -> pd.Series:
 
 
 # ============================================================ header
+# Keep traffic_intelligence_banner.png in the same folder as this app.py file.
+banner_path = Path(__file__).with_name("traffic_intelligence_banner.png")
+if banner_path.exists():
+    st.image(str(banner_path), use_container_width=True)
+
 st.title("Traffic Intelligence System")
 st.caption(f"I-94 Minneapolis - St Paul corridor  |  Viewing **{asof:%A %d %b %Y, %H:%M}**  |  "
            f"Model: **{model}**  |  Sensor now: **{sensor_now:,.0f} veh/h**")
